@@ -1,0 +1,819 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-background-primary: #090d16;
+  --color-background-secondary: #111726;
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-text-tertiary: #64748b;
+  --color-border-secondary: #1e293b;
+  --color-border-tertiary: #334155;
+  --border-radius-lg: 16px;
+  --border-radius-md: 12px;
+  --color-accent: #6366f1;
+  --color-accent-hover: #4f46e5;
+  
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 2.5rem 1.5rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.checklist-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header-banner {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.header-banner h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-banner p {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.card {
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-border-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+.card:hover {
+  border-color: var(--color-border-tertiary);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.skill-tab {
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--color-border-secondary);
+  color: var(--color-text-secondary);
+  background: rgba(30, 41, 59, 0.3);
+  margin: 0 6px 8px 0;
+  transition: all 0.2s ease;
+}
+.skill-tab:hover {
+  background: rgba(30, 41, 59, 0.6);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-tertiary);
+}
+.skill-tab.active {
+  background: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.sec-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  letter-spacing: 0.02em;
+}
+.must {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+.high {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+.good {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.point {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border-secondary);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.point:last-child {
+  border-bottom: none;
+}
+.point:hover {
+  background: rgba(255, 255, 255, 0.02);
+  padding-left: 6px;
+}
+
+/* Custom Checkbox styles */
+.point input[type=checkbox] {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  border: 2px solid var(--color-border-tertiary);
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.point input[type=checkbox]:checked {
+  background-color: #10b981;
+  border-color: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+.point input[type=checkbox]:checked::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  top: 1px;
+}
+
+.point label {
+  cursor: pointer;
+  flex: 1;
+  line-height: 1.5;
+  transition: color 0.2s;
+}
+.point label.done {
+  text-decoration: line-through;
+  color: var(--color-text-tertiary);
+}
+
+.p-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-left: 8px;
+  vertical-align: middle;
+  display: inline;
+  background: var(--color-border-secondary);
+  color: var(--color-text-secondary);
+}
+
+.stats-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.stat {
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-border-secondary);
+  border-radius: var(--border-radius-md);
+  padding: 16px 20px;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.stat-num {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+.stat-lbl {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+.prog {
+  height: 8px;
+  background: var(--color-border-secondary);
+  border-radius: 4px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.prog-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  transition: width .4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Action Buttons */
+button {
+  font-family: var(--font-family);
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+button:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+}
+button:active {
+  transform: translateY(1px);
+}
+button[onclick*="resetAll"] {
+  background: transparent;
+  border: 1px solid var(--color-border-tertiary);
+  color: var(--color-text-secondary);
+  box-shadow: none;
+}
+button[onclick*="resetAll"]:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #ef4444;
+  box-shadow: none;
+}
+
+/* CI/CD Specific styling */
+.q-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border-secondary);
+}
+.q-text:last-of-type {
+  border-bottom: none;
+}
+.q-ans {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  display: none;
+  padding: 12px 16px;
+  background: rgba(30, 41, 59, 0.2);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+  margin: 4px 0 12px;
+}
+.chev {
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+  transition: transform .2s;
+}
+.chev.open {
+  transform: rotate(180deg);
+}
+
+svg {
+  max-width: 100%;
+  height: auto;
+  background: #0b0f19;
+  border-radius: var(--border-radius-lg);
+  padding: 16px;
+  border: 1px solid var(--color-border-secondary);
+}
+.node rect {
+  fill: #111726;
+  stroke: var(--color-border-tertiary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.node:hover rect {
+  stroke: var(--color-accent);
+  fill: #1e293b;
+}
+.th { font-size: 13px; font-weight: 600; fill: var(--color-text-primary); }
+.ts { font-size: 11px; fill: var(--color-text-secondary); }
+.arr { stroke-width: 1.5; stroke: var(--color-border-tertiary); }
+.c-purple rect { stroke: #c084fc; fill: rgba(192, 132, 252, 0.05); }
+.c-purple .th { fill: #c084fc; }
+.c-blue rect { stroke: #60a5fa; fill: rgba(96, 165, 250, 0.05); }
+.c-blue .th { fill: #60a5fa; }
+.c-teal rect { stroke: #2dd4bf; fill: rgba(45, 212, 191, 0.05); }
+.c-teal .th { fill: #2dd4bf; }
+.c-amber rect { stroke: #fbbf24; fill: rgba(251, 191, 36, 0.05); }
+.c-amber .th { fill: #fbbf24; }
+.c-coral rect { stroke: #f87171; fill: rgba(248, 113, 113, 0.05); }
+.c-coral .th { fill: #f87171; }
+.c-gray rect { stroke: var(--color-border-secondary); fill: rgba(30, 41, 59, 0.3); }
+</style>
+<div class="checklist-container">
+  <div class="header-banner">
+    <h1>Full Stack & DevOps Prep</h1>
+    <p>Complete skill checklist for interview preparation, organized by domain with priority levels</p>
+  </div>
+
+  <div style="padding: 1rem 0">
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num" id="done-count">0</div><div class="stat-lbl">done</div></div>
+    <div class="stat"><div class="stat-num" id="total-count">0</div><div class="stat-lbl">total topics</div></div>
+    <div class="stat"><div class="stat-num" id="pct-count">0%</div><div class="stat-lbl">ready</div></div>
+  </div>
+  <div class="prog"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+
+  <div style="margin-bottom:14px; display:flex; flex-wrap:wrap">
+    <button class="skill-tab active" onclick="showTab('all')">All skills</button>
+    <button class="skill-tab" onclick="showTab('python')">Python</button>
+    <button class="skill-tab" onclick="showTab('git')">Git / GitHub</button>
+    <button class="skill-tab" onclick="showTab('aws')">AWS</button>
+    <button class="skill-tab" onclick="showTab('jenkins')">Jenkins</button>
+    <button class="skill-tab" onclick="showTab('pytest')">Pytest</button>
+    <button class="skill-tab" onclick="showTab('dsa')">DSA</button>
+    <button class="skill-tab" onclick="showTab('frontend')">Frontend</button>
+    <button class="skill-tab" onclick="showTab('backend')">Backend</button>
+    <button class="skill-tab" onclick="showTab('cicd')">CI/CD Pipeline</button>
+    <button class="skill-tab" onclick="showTab('soft')">Soft skills</button>
+  </div>
+
+  <div id="checklist-area"></div>
+
+  <div style="margin-top: 8px; display:flex; gap:8px; flex-wrap:wrap">
+    <button onclick="sendPrompt('Give me interview questions for the skills I marked as not done yet')">Practice weak areas ↗</button>
+    <button onclick="shareProgress()">Copy share link 🔗</button>
+    <button onclick="exportProgress()">Export code 📤</button>
+    <button onclick="importProgress()">Import code 📥</button>
+    <button onclick="resetAll()">Reset all</button>
+  </div>
+
+  </div>
+</div>
+
+<script>
+const data = [
+  { domain: "python", label: "Data types: list, dict, set, tuple — differences & use cases", priority: "must" },
+  { domain: "python", label: "List & dict comprehensions", priority: "must" },
+  { domain: "python", label: "Functions: *args, **kwargs, default args", priority: "must" },
+  { domain: "python", label: "Decorators — what they are and how to write one", priority: "must" },
+  { domain: "python", label: "Exception handling: try / except / else / finally", priority: "must" },
+  { domain: "python", label: "File I/O with context managers (with open)", priority: "must" },
+  { domain: "python", label: "subprocess module — run shell commands from Python", priority: "must" },
+  { domain: "python", label: "OOP: classes, inheritance, __init__, dunder methods", priority: "high" },
+  { domain: "python", label: "Generators and yield vs return", priority: "high" },
+  { domain: "python", label: "os, pathlib, shutil — file system operations", priority: "high" },
+  { domain: "python", label: "json and yaml parsing — reading config files", priority: "high" },
+  { domain: "python", label: "requests library — calling REST APIs", priority: "high" },
+  { domain: "python", label: "Virtual environments, pip, requirements.txt", priority: "high" },
+  { domain: "python", label: "boto3 basics — interact with AWS from Python", priority: "good" },
+  { domain: "python", label: "Logging module — structured logging best practices", priority: "good" },
+  { domain: "python", label: "Type hints and f-strings", priority: "good" },
+
+  { domain: "git", label: "git init, clone, add, commit, push, pull", priority: "must" },
+  { domain: "git", label: "Branching: create, switch, delete branches", priority: "must" },
+  { domain: "git", label: "git merge vs git rebase — when to use each", priority: "must" },
+  { domain: "git", label: "Pull Requests — create, review, merge on GitHub", priority: "must" },
+  { domain: "git", label: "Resolving merge conflicts", priority: "must" },
+  { domain: "git", label: "git stash and git stash pop", priority: "high" },
+  { domain: "git", label: "git log, git diff, git blame", priority: "high" },
+  { domain: "git", label: "git reset --soft / --mixed / --hard", priority: "high" },
+  { domain: "git", label: "git cherry-pick a specific commit", priority: "high" },
+  { domain: "git", label: ".gitignore — what to ignore and why", priority: "high" },
+  { domain: "git", label: "GitHub Actions — basic CI workflow on push/PR", priority: "high" },
+  { domain: "git", label: "Branching strategies: Git Flow, trunk-based development", priority: "good" },
+  { domain: "git", label: "Rewriting history: git rebase -i, git filter-branch", priority: "good" },
+  { domain: "git", label: "GitHub webhooks — how they trigger CI/CD", priority: "good" },
+
+  { domain: "aws", label: "Core services: EC2, S3, IAM, VPC, RDS", priority: "must" },
+  { domain: "aws", label: "IAM: users, roles, policies, least privilege", priority: "must" },
+  { domain: "aws", label: "S3: buckets, permissions, static hosting, lifecycle", priority: "must" },
+  { domain: "aws", label: "EC2: launch, security groups, key pairs, AMIs", priority: "must" },
+  { domain: "aws", label: "VPC: subnets, route tables, internet gateway, NAT", priority: "must" },
+  { domain: "aws", label: "AWS Lambda — serverless functions basics", priority: "high" },
+  { domain: "aws", label: "CloudWatch — logs, metrics, alarms", priority: "high" },
+  { domain: "aws", label: "Elastic Load Balancer and Auto Scaling Groups", priority: "high" },
+  { domain: "aws", label: "RDS vs DynamoDB — when to use which", priority: "high" },
+  { domain: "aws", label: "AWS CLI and SDK (boto3) basics", priority: "high" },
+  { domain: "aws", label: "CloudFormation or Terraform basics for IaC", priority: "high" },
+  { domain: "aws", label: "ECS / EKS — containerised workloads on AWS", priority: "good" },
+  { domain: "aws", label: "Route 53 — DNS and routing policies", priority: "good" },
+  { domain: "aws", label: "AWS cost management: billing dashboard, budgets", priority: "good" },
+
+  { domain: "jenkins", label: "What Jenkins is and its role in CI/CD", priority: "must" },
+  { domain: "jenkins", label: "Jenkinsfile — declarative pipeline syntax", priority: "must" },
+  { domain: "jenkins", label: "Pipeline stages: build → test → deploy", priority: "must" },
+  { domain: "jenkins", label: "GitHub webhook integration with Jenkins", priority: "must" },
+  { domain: "jenkins", label: "Environment variables and credentials in Jenkins", priority: "high" },
+  { domain: "jenkins", label: "Jenkins agents / nodes", priority: "high" },
+  { domain: "jenkins", label: "Parameterised builds", priority: "high" },
+  { domain: "jenkins", label: "Post-build actions: notifications, artifacts", priority: "high" },
+  { domain: "jenkins", label: "Blue Ocean UI and pipeline visualisation", priority: "good" },
+  { domain: "jenkins", label: "Jenkins vs GitHub Actions — trade-offs", priority: "good" },
+
+  { domain: "pytest", label: "Writing basic test functions with assert", priority: "must" },
+  { domain: "pytest", label: "Test discovery — naming conventions pytest expects", priority: "must" },
+  { domain: "pytest", label: "Fixtures: setup/teardown, scope (function/session)", priority: "must" },
+  { domain: "pytest", label: "pytest.mark.parametrize — data-driven tests", priority: "must" },
+  { domain: "pytest", label: "Mocking with unittest.mock or pytest-mock", priority: "must" },
+  { domain: "pytest", label: "pytest -v, -k, -x flags and running subsets", priority: "high" },
+  { domain: "pytest", label: "Testing exceptions with pytest.raises", priority: "high" },
+  { domain: "pytest", label: "Coverage reports with pytest-cov", priority: "high" },
+  { domain: "pytest", label: "Integration vs unit tests — when to use each", priority: "high" },
+  { domain: "pytest", label: "Conftest.py — shared fixtures across files", priority: "good" },
+
+  { domain: "dsa", label: "Arrays & strings — two pointer, sliding window", priority: "must" },
+  { domain: "dsa", label: "Hashmaps & sets — frequency counting, lookups", priority: "must" },
+  { domain: "dsa", label: "Linked lists — reverse, detect cycle, merge", priority: "must" },
+  { domain: "dsa", label: "Stacks & queues — balanced parentheses, BFS", priority: "must" },
+  { domain: "dsa", label: "Binary search — on sorted arrays and search space", priority: "must" },
+  { domain: "dsa", label: "Recursion & backtracking basics", priority: "high" },
+  { domain: "dsa", label: "Trees: BFS, DFS, height, path sum", priority: "high" },
+  { domain: "dsa", label: "Sorting: understand quicksort, mergesort time complexity", priority: "high" },
+  { domain: "dsa", label: "Big-O notation — analyse your own code", priority: "high" },
+  { domain: "dsa", label: "Dynamic programming — basic patterns (memoisation)", priority: "good" },
+  { domain: "dsa", label: "Graphs: BFS/DFS, connected components", priority: "good" },
+
+  { domain: "frontend", label: "React: components, props, state, hooks (useState, useEffect)", priority: "must" },
+  { domain: "frontend", label: "TypeScript basics: types, interfaces, generics", priority: "must" },
+  { domain: "frontend", label: "REST API calls from frontend with fetch / axios", priority: "must" },
+  { domain: "frontend", label: "CSS: flexbox, grid, responsive design", priority: "must" },
+  { domain: "frontend", label: "React Router — client-side routing", priority: "high" },
+  { domain: "frontend", label: "State management: Context API or Redux basics", priority: "high" },
+  { domain: "frontend", label: "Component lifecycle and cleanup in useEffect", priority: "high" },
+  { domain: "frontend", label: "Performance: lazy loading, code splitting, memoisation", priority: "high" },
+  { domain: "frontend", label: "Accessibility basics: ARIA, semantic HTML", priority: "high" },
+  { domain: "frontend", label: "Testing: React Testing Library basics", priority: "good" },
+  { domain: "frontend", label: "Next.js: SSR vs SSG vs CSR", priority: "good" },
+
+  { domain: "backend", label: "REST API design: methods, status codes, versioning", priority: "must" },
+  { domain: "backend", label: "JWT authentication: how it works, expiry, refresh", priority: "must" },
+  { domain: "backend", label: "Node.js / Express: routes, middleware, error handling", priority: "must" },
+  { domain: "backend", label: "Database basics: SQL queries, joins, indexing", priority: "must" },
+  { domain: "backend", label: "MongoDB: schema design, CRUD, aggregation basics", priority: "high" },
+  { domain: "backend", label: "Environment variables and secrets management", priority: "high" },
+  { domain: "backend", label: "CORS — what it is and how to configure it", priority: "high" },
+  { domain: "backend", label: "API rate limiting and input validation", priority: "high" },
+  { domain: "backend", label: "Caching basics: Redis or in-memory", priority: "good" },
+  { domain: "backend", label: "Docker basics: Dockerfile, docker-compose, images", priority: "good" },
+  { domain: "backend", label: "WebSockets vs HTTP — when to use each", priority: "good" },
+
+  { domain: "cicd", label: "What CI and CD mean — Continuous Integration vs Continuous Delivery vs Deployment", priority: "must" },
+  { domain: "cicd", label: "Why CI/CD exists — remove manual steps, catch bugs early, ship faster", priority: "must" },
+  { domain: "cicd", label: "Pipeline stages: Source → Build → Test → Deploy → Monitor", priority: "must" },
+  { domain: "cicd", label: "What a Jenkinsfile is and how to write a basic declarative pipeline", priority: "must" },
+  { domain: "cicd", label: "How GitHub webhooks trigger a Jenkins build automatically", priority: "must" },
+  { domain: "cicd", label: "What happens when a pipeline stage fails — notifications, blocking deploy", priority: "must" },
+  { domain: "cicd", label: "Difference between CI (merge often, test fast) and CD (deploy automatically)", priority: "must" },
+  { domain: "cicd", label: "Writing a Jenkinsfile with stages: install deps → run pytest → build docker image → deploy", priority: "high" },
+  { domain: "cicd", label: "Environment variables and secrets in Jenkins (credentials store)", priority: "high" },
+  { domain: "cicd", label: "Docker basics in CI/CD — build an image, push to registry, deploy a container", priority: "high" },
+  { domain: "cicd", label: "GitHub Actions vs Jenkins — trade-offs, when to use each", priority: "high" },
+  { domain: "cicd", label: "Rollback strategies — how to revert a bad deployment", priority: "high" },
+  { domain: "cicd", label: "Blue-green deployment and canary releases — what they are", priority: "high" },
+  { domain: "cicd", label: "Artifacts — what they are, how Jenkins stores them", priority: "high" },
+  { domain: "cicd", label: "Pipeline as code — why Jenkinsfile is committed to the repo", priority: "high" },
+  { domain: "cicd", label: "Multi-branch pipelines — one pipeline per branch, feature flags", priority: "good" },
+  { domain: "cicd", label: "Parallel stages in Jenkins — run tests and linting at the same time", priority: "good" },
+  { domain: "cicd", label: "Infrastructure as Code (Terraform) integrated into a CI/CD pipeline", priority: "good" },
+  { domain: "cicd", label: "Security scanning (SAST/DAST) as a pipeline stage", priority: "good" },
+  { domain: "cicd", label: "Deployment to ECS or Kubernetes from a Jenkins pipeline", priority: "good" },
+  { domain: "cicd", label: "Monitoring and alerting post-deploy — CloudWatch alarms, PagerDuty", priority: "good" },
+  { domain: "cicd", label: "GitOps — ArgoCD, Flux — CI/CD from a git repo for K8s", priority: "good" },
+
+  { domain: "soft", label: "Explain your projects clearly using STAR format", priority: "must" },
+  { domain: "soft", label: "Walk through your resume confidently — every point", priority: "must" },
+  { domain: "soft", label: "Answer 'tell me about yourself' in under 2 minutes", priority: "must" },
+  { domain: "soft", label: "Explain a technical decision and why you made it", priority: "must" },
+  { domain: "soft", label: "Describe how you handle a bug under pressure", priority: "high" },
+  { domain: "soft", label: "Ask 2-3 intelligent questions to the interviewer", priority: "high" },
+  { domain: "soft", label: "Know your salary expectations for Indian IT market", priority: "high" },
+  { domain: "soft", label: "LinkedIn profile polished and open to work", priority: "good" },
+];
+
+const qs = [
+  {q:"What is the difference between Continuous Integration, Continuous Delivery, and Continuous Deployment?", a:"CI = developers merge code frequently and automated tests run on every merge. Continuous Delivery = every passing build is automatically prepared and ready to deploy, but a human approves the release. Continuous Deployment = every passing build deploys to production automatically with no human gate. In interviews, always clarify which 'CD' you mean — they're different."},
+  {q:"Explain the full flow from a developer pushing code to it being live in production.", a:"Developer pushes to GitHub → GitHub webhook fires a POST to Jenkins → Jenkins checks out the code → installs dependencies → runs Pytest (tests fail: pipeline stops, team notified) → builds a Docker image → pushes image to registry → deploys to AWS (EC2/ECS/Lambda) → CloudWatch monitors logs and triggers alerts if errors spike. This is the answer they want when they say 'walk me through your CI/CD pipeline.'"},
+  {q:"What does a Jenkinsfile look like? Write a simple example.", a:"A declarative Jenkinsfile has a pipeline block with agent, environment, and stages. Example: pipeline { agent any; stages { stage('Test') { steps { sh 'pip install -r requirements.txt && pytest' } }; stage('Deploy') { steps { sh './deploy.sh' } } } }. Key point: it lives in the repo, version-controlled alongside the code — called 'pipeline as code'."},
+  {q:"What happens if the test stage fails in your pipeline? How do you handle it?", a:"When Pytest fails, Jenkins marks the stage as FAILED, the pipeline stops — no deployment happens. Post-build actions send a Slack/email notification with the build log link. The developer fixes the code and pushes again, re-triggering the pipeline. The key principle: fail fast, fail loudly, never deploy broken code."},
+  {q:"What is the difference between blue-green deployment and a canary release?", a:"Blue-green: you run two identical production environments (blue = live, green = new version). You deploy to green, run tests, then switch traffic all at once. Rollback = flip traffic back to blue. Canary: you gradually shift a small percentage of traffic (say 5%) to the new version, watch metrics, then slowly ramp to 100%. Canary is safer for large user bases; blue-green is simpler to manage."},
+];
+
+let checked = new Set();
+try {
+  // Check URL parameters first for shared state
+  const urlParams = new URLSearchParams(window.location.search);
+  const sharedState = urlParams.get('state');
+  if (sharedState) {
+    const arr = sharedState.split(',').map(Number).filter(n => !isNaN(n));
+    checked = new Set(arr);
+    // Save to local storage so it persists
+    localStorage.setItem('devops_checklist_checked', JSON.stringify(arr));
+    // Clean up URL parameter without reloading
+    const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
+  } else {
+    // Otherwise load from local storage
+    const saved = localStorage.getItem('devops_checklist_checked');
+    if (saved) {
+      const arr = JSON.parse(saved);
+      if (Array.isArray(arr)) {
+        checked = new Set(arr);
+      }
+    }
+  }
+} catch (e) {
+  console.error('Failed to load checklist state:', e);
+}
+
+function saveState() {
+  try {
+    localStorage.setItem('devops_checklist_checked', JSON.stringify(Array.from(checked)));
+  } catch (e) {
+    console.error('Failed to save checklist state:', e);
+  }
+}
+
+function shareProgress() {
+  const state = Array.from(checked).join(',');
+  const url = window.location.href.split('?')[0] + '?state=' + encodeURIComponent(state);
+  navigator.clipboard.writeText(url).then(() => {
+    alert('Shareable link copied to clipboard! Open this link on your other device to sync your progress.');
+  }).catch(err => {
+    prompt('Copy this shareable link:', url);
+  });
+}
+
+function exportProgress() {
+  const state = btoa(JSON.stringify(Array.from(checked)));
+  navigator.clipboard.writeText(state).then(() => {
+    alert('Progress code copied to clipboard! You can paste this code on another device.');
+  }).catch(err => {
+    prompt('Copy your progress code:', state);
+  });
+}
+
+function importProgress() {
+  const code = prompt('Paste your progress code here:');
+  if (!code) return;
+  try {
+    const arr = JSON.parse(atob(code.trim()));
+    if (Array.isArray(arr)) {
+      checked = new Set(arr);
+      saveState();
+      renderChecklist(currentTab);
+      alert('Progress imported successfully!');
+    } else {
+      alert('Invalid progress code.');
+    }
+  } catch (e) {
+    alert('Failed to import progress. Please make sure the code is valid.');
+  }
+}
+
+
+function renderChecklist(filter) {
+  const area = document.getElementById('checklist-area');
+  const filtered = filter === 'all' ? data : data.filter(d => d.domain === filter);
+
+  const groups = {};
+  filtered.forEach((item, idx) => {
+    const gKey = item.priority;
+    if (!groups[gKey]) groups[gKey] = [];
+    groups[gKey].push({ ...item, idx: data.indexOf(item) });
+  });
+
+  const order = ['must', 'high', 'good'];
+  const labels = { must: 'Must know — asked in almost every interview', high: 'High value — separates good candidates', good: 'Good to have — bonus points' };
+
+  let html = '';
+
+  // Add the Flow diagram if it's the cicd tab
+  if (filter === 'cicd') {
+    html += `
+    <div style="margin-bottom: 20px;">
+      <h3 style="font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 8px;">How it all connects</h3>
+      <p style="font-size:12px;color:var(--color-text-secondary);margin:0 0 14px">Each stage below maps to a tool you already know. CI/CD is the glue that runs them in order automatically.</p>
+      <svg width="100%" viewBox="0 0 680 480" role="img">
+        <title>CI/CD pipeline stages mapped to tools</title>
+        <desc>Five pipeline stages shown left to right: Code, Build, Test, Deploy, Monitor — each with the corresponding tool and a brief description</desc>
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <g class="node c-purple" onclick="sendPrompt('Explain CI CD code stage in detail')">
+          <rect x="20" y="60" width="108" height="80" rx="8" stroke-width="0.5"/>
+          <text class="th" x="74" y="95" text-anchor="middle" dominant-baseline="central">Code</text>
+          <text class="ts" x="74" y="118" text-anchor="middle" dominant-baseline="central">Git push / PR</text>
+        </g>
+
+        <line x1="128" y1="100" x2="154" y2="100" class="arr" marker-end="url(#arrow)" stroke="#7F77DD"/>
+
+        <g class="node c-blue" onclick="sendPrompt('Explain CI CD build stage in detail')">
+          <rect x="154" y="60" width="108" height="80" rx="8" stroke-width="0.5"/>
+          <text class="th" x="208" y="95" text-anchor="middle" dominant-baseline="central">Build</text>
+          <text class="ts" x="208" y="118" text-anchor="middle" dominant-baseline="central">Jenkins trigger</text>
+        </g>
+
+        <line x1="262" y1="100" x2="288" y2="100" class="arr" marker-end="url(#arrow)" stroke="#378ADD"/>
+
+        <g class="node c-teal" onclick="sendPrompt('Explain CI CD test stage in detail')">
+          <rect x="288" y="60" width="108" height="80" rx="8" stroke-width="0.5"/>
+          <text class="th" x="342" y="95" text-anchor="middle" dominant-baseline="central">Test</text>
+          <text class="ts" x="342" y="118" text-anchor="middle" dominant-baseline="central">Pytest / lint</text>
+        </g>
+
+        <line x1="396" y1="100" x2="422" y2="100" class="arr" marker-end="url(#arrow)" stroke="#1D9E75"/>
+
+        <g class="node c-amber" onclick="sendPrompt('Explain CI CD deploy stage in detail')">
+          <rect x="422" y="60" width="108" height="80" rx="8" stroke-width="0.5"/>
+          <text class="th" x="476" y="95" text-anchor="middle" dominant-baseline="central">Deploy</text>
+          <text class="ts" x="476" y="118" text-anchor="middle" dominant-baseline="central">AWS / Docker</text>
+        </g>
+
+        <line x1="530" y1="100" x2="556" y2="100" class="arr" marker-end="url(#arrow)" stroke="#BA7517"/>
+
+        <g class="node c-coral" onclick="sendPrompt('Explain CI CD monitor stage in detail')">
+          <rect x="556" y="60" width="108" height="80" rx="8" stroke-width="0.5"/>
+          <text class="th" x="610" y="95" text-anchor="middle" dominant-baseline="central">Monitor</text>
+          <text class="ts" x="610" y="118" text-anchor="middle" dominant-baseline="central">CloudWatch</text>
+        </g>
+
+        <rect x="20" y="175" width="644" height="0.5" fill="var(--color-border-tertiary)"/>
+        <text class="ts" x="342" y="195" text-anchor="middle" dominant-baseline="central">Your tools in each stage</text>
+
+        <g class="c-purple">
+          <rect x="20" y="210" width="108" height="36" rx="6" stroke-width="0.5"/>
+          <text class="ts" x="74" y="228" text-anchor="middle" dominant-baseline="central">Git + GitHub</text>
+        </g>
+        <g class="c-blue">
+          <rect x="154" y="210" width="108" height="36" rx="6" stroke-width="0.5"/>
+          <text class="ts" x="208" y="228" text-anchor="middle" dominant-baseline="central">Jenkins</text>
+        </g>
+        <g class="c-teal">
+          <rect x="288" y="210" width="108" height="36" rx="6" stroke-width="0.5"/>
+          <text class="ts" x="342" y="228" text-anchor="middle" dominant-baseline="central">Pytest + Python</text>
+        </g>
+        <g class="c-amber">
+          <rect x="422" y="210" width="108" height="36" rx="6" stroke-width="0.5"/>
+          <text class="ts" x="476" y="228" text-anchor="middle" dominant-baseline="central">AWS EC2/S3</text>
+        </g>
+        <g class="c-coral">
+          <rect x="556" y="210" width="108" height="36" rx="6" stroke-width="0.5"/>
+          <text class="ts" x="610" y="228" text-anchor="middle" dominant-baseline="central">CloudWatch</text>
+        </g>
+
+        <text class="ts" x="342" y="275" text-anchor="middle" dominant-baseline="central">What triggers the pipeline?</text>
+
+        <g class="node c-gray" onclick="sendPrompt('Explain how GitHub webhooks trigger Jenkins pipeline')">
+          <rect x="155" y="290" width="370" height="44" rx="8" stroke-width="0.5"/>
+          <text class="th" x="340" y="308" text-anchor="middle" dominant-baseline="central">GitHub Webhook</text>
+          <text class="ts" x="340" y="325" text-anchor="middle" dominant-baseline="central">HTTP POST to Jenkins on every push or PR</text>
+        </g>
+
+        <line x1="340" y1="334" x2="340" y2="360" class="arr" marker-end="url(#arrow)"/>
+
+        <g class="node c-blue" onclick="sendPrompt('What does a Jenkinsfile look like for a Python project?')">
+          <rect x="155" y="360" width="370" height="44" rx="8" stroke-width="0.5"/>
+          <text class="th" x="340" y="378" text-anchor="middle" dominant-baseline="central">Jenkinsfile runs</text>
+          <text class="ts" x="340" y="395" text-anchor="middle" dominant-baseline="central">install → pytest → docker build → deploy</text>
+        </g>
+
+        <line x1="340" y1="404" x2="340" y2="430" class="arr" marker-end="url(#arrow)"/>
+
+        <g class="node c-teal" onclick="sendPrompt('What happens when tests fail in a Jenkins pipeline?')">
+          <rect x="155" y="430" width="370" height="36" rx="8" stroke-width="0.5"/>
+          <text class="ts" x="340" y="448" text-anchor="middle" dominant-baseline="central">Pass → deploy to AWS &nbsp;|&nbsp; Fail → notify team, block deploy</text>
+        </g>
+      </svg>
+    </div>
+    <h3 style="font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin-top: 20px; margin-bottom: 8px;">Topics checklist</h3>
+    `;
+  }
+
+  html += order.filter(o => groups[o]).map(o => `
+    <div class="card">
+      <div class="sec-title">
+        <span class="badge ${o}">${o === 'must' ? 'Must know' : o === 'high' ? 'High value' : 'Good to have'}</span>
+        <span style="font-size:12px; color:var(--color-text-secondary); font-weight:400">${labels[o]}</span>
+      </div>
+      ${groups[o].map(item => `
+        <div class="point">
+          <input type="checkbox" id="cb-${item.idx}" ${checked.has(item.idx) ? 'checked' : ''} onchange="toggle(${item.idx})">
+          <label for="cb-${item.idx}" class="${checked.has(item.idx) ? 'done' : ''}">${item.label}</label>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+
+  // Add the Q&A section if it's the cicd tab
+  if (filter === 'cicd') {
+    html += `
+    <div style="margin-top: 20px;">
+      <h3 style="font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 8px;">Interview questions</h3>
+      <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 14px">Tap any question to reveal the model answer. Say it out loud.</p>
+      <div class="card">
+        ${qs.map((q, i) => `
+          <div class="q-text" onclick="toggleQ(this)">
+            <span>Q${i+1}. ${q.q}</span>
+            <span class="chev">&#8964;</span>
+          </div>
+          <div class="q-ans">${q.a}</div>
+        `).join('')}
+      </div>
+      <button onclick="sendPrompt('Give me 5 more advanced CI/CD interview questions with answers')" style="margin-top:4px">More questions ↗</button>
+    </div>
+    `;
+  }
+
+  area.innerHTML = html;
+  updateStats();
+}
+
+function toggle(idx) {
+  if (checked.has(idx)) checked.delete(idx);
+  else checked.add(idx);
+  const lbl = document.querySelector(`label[for="cb-${idx}"]`);
+  if (lbl) lbl.className = checked.has(idx) ? 'done' : '';
+  saveState();
+  updateStats();
+}
+
+function updateStats() {
+  const total = data.length;
+  const done = checked.size;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('done-count').textContent = done;
+  document.getElementById('total-count').textContent = total;
+  document.getElementById('pct-count').textContent = pct + '%';
+  document.getElementById('prog-fill').style.width = pct + '%';
+}
+
+let currentTab = 'all';
+function showTab(t) {
+  currentTab = t;
+  document.querySelectorAll('.skill-tab').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  renderChecklist(t);
+}
+
+function resetAll() {
+  checked.clear();
+  saveState();
+  renderChecklist(currentTab);
+}
+
+function toggleQ(el) {
+  const ans = el.nextElementSibling;
+  const chev = el.querySelector('.chev');
+  const open = ans.style.display==='block';
+  ans.style.display=open?'none':'block';
+  chev.classList.toggle('open',!open);
+}
+
+renderChecklist('all');
+updateStats();
+</script>
